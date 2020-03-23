@@ -5,22 +5,37 @@ yarn  start
 npm install -g yarn
 
 
-https://meyerweb.com/eric/tools/css/reset/
-https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.11&manage_type=myprojects&projectId=1704407
-https://reactcommunity.org/react-transition-group/
 
-yarn add styled-components
-yarn add react-transition-group
+
+
+yarn add styled-components  样式
+yarn add react-transition-group   动画
+
 yarn add redux   数据中心， action store reducer
 yarn add react-redux 更方便使用
 
-https://github.com/zalmoxisus/redux-devtools-extension
+yarn add redux-thunk   对action(redux)的升级，之前只能传递对象，现在可传递方法
 
 yarn add immutable  对小记事本进行权限限制
 yarn add redux-immutable  对store里面的数据state进行权限限制
-yarn add redux-thunk   对action的升级，之前只能传递对象，现在可传递方法
+
 yarn add axios 用于异步请求数据  ajax
-yarn add react-router-dom 路由
+yarn add react-router-dom 路由(静态路径(推荐)   /：id   动态路由  ?id=2  )
+yarn add react-loadable 
+
+
+https://meyerweb.com/eric/tools/css/reset/
+https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.11&manage_type=myprojects&projectId=1704407
+https://reactcommunity.org/react-transition-group/
+https://github.com/zalmoxisus/redux-devtools-extension
+https://github.com/jamiebuilds/react-loadable
+
+
+
+居中
+margin： 10px auto;
+display: block;   （针对内连标签需要，比如 input  button   ，div 不需要）
+
 
 
 

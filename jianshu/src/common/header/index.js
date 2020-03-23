@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 
 import {
     HeaderWrappper,
@@ -24,7 +25,7 @@ import { Link } from 'react-router-dom';
 class Header extends PureComponent {
 
     getListArea() {
-        const { focused, list, page , totalPage ,handleMouseEnter ,handleMouseLeave ,mouseIn ,handleChagePage } = this.props
+        const { focused, list, page , totalPage ,handleMouseEnter ,handleMouseLeave ,mouseIn ,handleChagePage ,login } = this.props
         const newList = list.toJS()
         const pageList = []
         for (let i = (page - 1) * 10; i < page * 10 ; i++) {
@@ -62,7 +63,7 @@ class Header extends PureComponent {
     }
 
     render() {
-        const { focused, handleInputBlur, handleInputFocuse ,list } = this.props
+        const { focused, handleInputBlur, handleInputFocuse ,list ,login ,logout } = this.props
         return (
             <HeaderWrappper>
                 <Link to = '/'>
@@ -71,7 +72,13 @@ class Header extends PureComponent {
                 <Nav >
                     <NavItem className="left active">首页</NavItem>
                     <NavItem className="left">下载APP</NavItem>
-                    <NavItem className="right" >登录</NavItem>
+                    {
+                        login ?  <NavItem className="right" onClick={logout}  >退出</NavItem> :   <Link to = '/login'  > <NavItem className="right" >登录</NavItem>  </Link>
+                      
+                      
+                         
+                    }
+                    
                     <NavItem className="right" >
                         <span className="iconfont">&#xe636;</span>
                     </NavItem>
@@ -94,11 +101,12 @@ class Header extends PureComponent {
                     </SearchWrapper>
                 </Nav>
                 <Addition>
-
-                    <Button className="writting" >
-                        <span className="iconfont">&#xe615;</span>
-                        写文章
-                    </Button>
+                    <Link to='/write'>
+                        <Button className="writting" >
+                            <span className="iconfont">&#xe615;</span>
+                            写文章
+                        </Button>
+                    </Link>
                     <Button className="reg">注册</Button>
 
 
@@ -120,6 +128,7 @@ const mapStateToProps = (state) => {
         page: state.getIn(['header', 'page']),
         mouseIn: state.getIn(['header', 'mouseIn']),
         totalPage: state.getIn(['header', 'totalPage']),
+        login: state.getIn(['login', 'login']),
     }
 }
 
@@ -155,6 +164,9 @@ const mapDispathToProps = (dispatch) => {
                 dispatch(actionCreators.changePage(1));
             }
             
+        },
+        logout() {
+            dispatch(loginActionCreators.logout())
         }
     }
 }
